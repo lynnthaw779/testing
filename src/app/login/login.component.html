@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-content>
+      <div class="header">
+        <P> 予約システムにログイン </P>
+      </div>
+      <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+        <div class="emailInput">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>メールアドレス</mat-label>
+            <input
+              formControlName="email"
+              matInput
+              placeholder="メールアドレス" required
+            />
+            <mat-error *ngIf="!loginForm.controls['email'].valid">
+                メールアドレスを入力してください
+              </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div>
+          <span>
+            <a class="aLink" routerLink="/auth/forgot-password">パスワードを忘れですか？</a>
+          </span>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>パスワード</mat-label>
+            <input formControlName="password" placeholder="パスワード" matInput [type]=" hide ? 'password' : 'text'" required />
+            <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>
+                {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+        </button>
+        <mat-error *ngIf="!loginForm.controls['password'].valid">
+            パスワードを入力してください
+          </mat-error>
+        </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
